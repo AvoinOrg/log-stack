@@ -4,8 +4,8 @@ server:
   http_listen_port: 3100
 
 ingester:
-  # wal:
-  #   dir: /tmp/loki/wal
+  wal:
+    dir: /tmp/loki/wal
   lifecycler:
     ring:
       kvstore:
