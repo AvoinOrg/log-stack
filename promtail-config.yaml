@@ -16,4 +16,21 @@ scrape_configs:
         labels:
           job: docker
           __path__: /var/lib/docker/containers/*/*.log
-          
+    pipeline_stages:
+      - docker:
+          container_labels:
+            - com.docker.compose.service
+      - json:
+          expressions:
+            log: log
+            stream: stream
+            time: time
+      - timestamp:
+          source: time
+          format: RFC3339Nano
+      - labels:
+          container_name: '{{ .container_name }}'
+          com_docker_compose_service: '{{ .com_docker_compose_service }}'
+      - output:
+          source: log
+          remove_keys: ["stream", "time"]
