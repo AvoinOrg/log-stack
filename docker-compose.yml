@@ -11,6 +11,7 @@ services:
       - ${LOKI_STORAGE_PATH}:/data
     networks:
       - loki-stack
+    restart: always
 
   # promtail:
   #   image: grafana/promtail:${PROMTAIL_VERSION}
@@ -41,6 +42,7 @@ services:
       - loki-stack
     depends_on:
       - loki
+    restart: always
 
 networks:
   loki-stack:
