@@ -39,6 +39,8 @@ schema_config:
       object_store: filesystem
       schema: v13
       store: tsdb
+      retention_period: 720h  # 30 days
 
 compactor:
   working_directory: /data/tsdb-compactor
+  shared_store: filesystem
